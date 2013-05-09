@@ -62,7 +62,7 @@ class API {
 				
 			} catch ( Exception $e ) {
 				
-				die( 'There was an error getting authorization token: ' . $e->getMessage() );
+				throw new \Exception( 'There was an error getting authorization token: ' . $e->getMessage() );
 				
 			}
 			
