@@ -185,6 +185,45 @@ class API {
 		
 	}
 	
+	/***********************************************************************
+	 * Functions for retrieving and manipulating mailboxes with a domain
+	 */
+	
+	public function fetch_mailboxes( $domain ) {
+		
+		$result = $this->http_get(
+			$this->build_endpoint_url(
+				'mailbox/list',
+				array(
+					'domain' => $domain
+				)
+			)
+		);
+		
+		if( $result->success )
+			return $this->decode_xml_response( $result->response_body );
+		return false;
+	}
+	
+	public function get_mailbox_settings( $mailbox ) {}
+	public function create_mailbox( $mailbox, $attrs ) {}
+	public function delete_mailbox( $mailbox ) {
+		
+		$result = $this->http_get(
+			$this->build_endpoint_url(
+				'mailbox/delete',
+				array(
+					'email' => $mailbox
+				)
+			)
+		);
+		
+		if( $result->success )
+			return $this->decode_xml_response( $result->response_body );
+		return false;
+		
+	}
+	
 	/*************************************************************************
 	 * Functions for retrieving and manipulating administrative user accounts
 	 */
